@@ -11,6 +11,7 @@
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {
+    "@vueuse/core": "^10.9.0",
     "axios": "^1.6.8",
     "element-plus": "^2.6.3",
     "pinia": "^2.1.7",
@@ -24,6 +25,7 @@
     "@vue/tsconfig": "^0.5.1",
     "npm-run-all2": "^6.1.2",
     "sass": "^1.74.1",
+    "sass-loader": "^14.1.1",
     "typescript": "~5.4.0",
     "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0",
