@@ -12,8 +12,12 @@ const router = createRouter({
           component: () => import('@/views/Home/index.vue')
         },
         {
-          path: 'category',
+          path: 'category/:id',
           component: () => import('@/views/Category/index.vue')
+        },
+        {
+          path: 'category/sub/:id',
+          component: () => import('@/views/SubCategory/index.vue')
         }
       ]
     },
@@ -21,7 +25,12 @@ const router = createRouter({
       path: '/login',
       component: () => import('@/views/Login/index.vue')
     }
-  ]
+  ],
+  scrollBehavior() {
+    return {
+      top: 0
+    }
+  }
 })
 
 export default router
