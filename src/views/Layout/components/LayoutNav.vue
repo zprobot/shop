@@ -2,10 +2,10 @@
     <nav class="app-topnav">
         <div class="container">
             <ul>
-                <template v-if="true">
-                    <li><a><i class="iconfont icon-user"></i>周杰伦</a></li>
+                <template v-if="userStore.userInfo?.token">
+                    <li><a><i class="iconfont icon-user"></i>{{ userStore.userInfo.account }}</a></li>
                     <li>
-                        <el-popconfirm title="确认退出吗？" confirm-button-text="确认" cancel-button-text="取消">
+                        <el-popconfirm title="确认退出吗？" @confirm="confirm" confirm-button-text="确认" cancel-button-text="取消">
                             <template #reference>
                                 <a>退出登录</a>
                             </template>
@@ -15,7 +15,7 @@
                     <li><a>会员中心</a></li>
                 </template>
                 <template v-else>
-                    <li><a>请先登录</a></li>
+                    <li><a @click="$router.push('/login')">请先登录</a></li>
                     <li><a>帮助中心</a></li>
                     <li><a>关于我们</a></li>
                 </template>
@@ -25,7 +25,14 @@
 </template>
 
 <script setup lang="ts">
+import router from '@/router';
+import { useUserStore } from '@/stores/userStore';
 
+const userStore = useUserStore()
+const confirm = () => {
+    userStore.clearUserInfo()
+    router.replace('/login')
+}
 </script>
 
 <style scoped lang="scss">

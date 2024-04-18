@@ -157,6 +157,19 @@ export type SubData = {
     pageSize: number
     pages: number
 }
+export type Account = {
+    account: string
+    avatar: string
+    birthday: string
+    cityCode: string
+    gender: string
+    id: string
+    mobile: string
+    nickname: string
+    profession: string
+    provinceCode: string
+    token: string
+}
 export interface GoodCategoryResponse extends ResponseBase {
     result: GoodCategory[]
 }
@@ -186,4 +199,7 @@ export interface GoodDetailResponse extends ResponseBase {
 }
 export interface DetailHotResponse extends ResponseBase {
     result: Good[]
+}
+export interface LoginResponse extends ResponseBase {
+    result: Account
 }
