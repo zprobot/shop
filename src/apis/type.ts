@@ -2,15 +2,78 @@ interface ResponseBase {
     code: string
     msg: string
 }
-
+type Spec = {
+    name: string
+    id: string
+    values: {
+        name: string
+        picture: string | null
+        desc: string
+    }[]
+}
+type Sku = {
+    id: string
+    skuCode: string
+    price: string
+    oldPrice: string
+    inventory: number
+    specs: {
+        name: string
+        valueName: string
+    }[]
+}
+type Category = {
+    id: string
+    name: string
+    layer: string
+    parent: Category | null
+}
+type Detail = {
+    pictures: string[]
+    properties: Properties[]
+}
+type Comment = {
+    id: string
+    orderInfo: null
+    member: null
+    score: number
+    tags: null
+    content: string
+    pictures: null
+    officialReply: null
+    praiseCount: number
+    createTime: string
+    praisePercent: number
+}
 export type Good = {
     id: string
     name: string
     desc: string
     price: string
-    picture: string
-    discount?: null
+    picture?: string
+    discount?: null | number
     orderNum?: null | number
+    spuCode?: string
+    oldPrice?: string
+    inventory?: number
+    brand?: Brand
+    salesCount?: number
+    commentCount?: number
+    collectCount?: number
+    mainVideos?: string[]
+    videoScale?: number
+    mainPictures?: string[]
+    specs?: Spec[]
+    skus?: Sku[]
+    categories?: Category[]
+    details?: Detail
+    isPreSale?: boolean
+    isCollect?: null
+    recommends?: null
+    userAddresses?: null
+    similarProducts?: Good[]
+    hotByDay?: Good[]
+    evaluationinfo?: Comment
 }
 export type GoodCategory = {
     id: string
@@ -51,18 +114,19 @@ export type SecondCategory = {
     parent: null
 }
 export type Brand = {
-    desc: string
+    desc: string | null
     id: string
     logo: string
     name: string
     nameEn: string
     picture: string
-    place: string
+    place: string | null
     type: null
 }
 export type Properties = {
-    id: string
     name: string
+    id?: string
+    value?:string
 }
 export type SalePropertis = {
     id: string
@@ -116,4 +180,10 @@ export interface SecondCategoryResponse extends ResponseBase {
 }
 export interface SubDataResponse extends ResponseBase {
     result: SubData
+}
+export interface GoodDetailResponse extends ResponseBase {
+    result: Good
+}
+export interface DetailHotResponse extends ResponseBase {
+    result: Good[]
 }
