@@ -11,13 +11,15 @@ type Spec = {
         desc: string
     }[]
 }
-type Sku = {
-    id: string
-    skuCode: string
+export type Sku = {
+    id?: string
+    skuCode?: string
+    skuId?: string
+    specsText?: string
     price: string
     oldPrice: string
     inventory: number
-    specs: {
+    specs?: {
         name: string
         valueName: string
     }[]
@@ -74,6 +76,24 @@ export type Good = {
     similarProducts?: Good[]
     hotByDay?: Good[]
     evaluationinfo?: Comment
+}
+export type CartItem = {
+    id: string
+    name: string
+    picture: string
+    price: string
+    count: number
+    skuId: string
+    attrsText: string
+    selected: boolean
+    specs?: string[],
+    nowPrice?: string
+    nowOriginalPrice?: string
+    srock?: number
+    isEffective?: boolean
+    discount?: null
+    isCollect?: boolean
+    postFee?: number
 }
 export type GoodCategory = {
     id: string
@@ -202,4 +222,10 @@ export interface DetailHotResponse extends ResponseBase {
 }
 export interface LoginResponse extends ResponseBase {
     result: Account
+}
+export interface CartListResponse extends ResponseBase {
+    result: CartItem[]
+}
+export interface AddCartResponse extends ResponseBase {
+    result: CartItem
 }

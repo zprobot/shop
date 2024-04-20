@@ -67,12 +67,12 @@
                             </dl>
                         </div>
                         <!-- sku组件 -->
-                        <Sku :goods="goods" @change="skuChange" />
+                        <SkuItem :goods="goods" @change="skuChange" />
                         <!-- 数据组件 -->
-
+                        <el-input-number v-model="count" :min="1"></el-input-number>
                         <!-- 按钮组件 -->
                         <div>
-                            <el-button size="large" class="btn">
+                            <el-button size="large" class="btn" @click="addCart(goods!)">
                                 加入购物车
                             </el-button>
                         </div>
@@ -113,21 +113,12 @@
 <script setup lang="ts">
 import DetailHot from '@/views/Detail/components/DetailHot.vue'
 import ImageView from '@/components/ImageView.vue'
-import Sku from "@/components/Sku/index.vue"
-import { getDetail } from '@/apis/detail'
-import type { Good } from '@/apis/type';
-import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router'
-const goods = ref<Good>()
-const route = useRoute()
-const getGoods = async () => {
-    const res = await getDetail(route.params.id as string)
-    goods.value = res.result
-}
-const skuChange = (sku: any) => {
-    console.log(sku)
-}
-onMounted(() => getGoods())
+import SkuItem from "@/components/Sku/index.vue"
+import { useGoods } from './composable/useGoods';
+import { useSku } from './composable/useSku';
+const { goods } = useGoods()
+const { count,skuChange,addCart} = useSku()
+
 </script>
 
 <style scoped lang='scss'>

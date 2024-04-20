@@ -26,11 +26,13 @@
 
 <script setup lang="ts">
 import router from '@/router';
+import { useCartStore } from '@/stores/cartStore';
 import { useUserStore } from '@/stores/userStore';
-
 const userStore = useUserStore()
+const cartStore = useCartStore()
 const confirm = () => {
     userStore.clearUserInfo()
+    cartStore.clearCartList()
     router.replace('/login')
 }
 </script>

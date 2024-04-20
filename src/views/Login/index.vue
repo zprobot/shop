@@ -57,8 +57,6 @@
 
 <script setup lang="ts">
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus';
-import 'element-plus/theme-chalk/el-message.css'
-import { reqLogin } from '@/apis/user'
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/userStore'

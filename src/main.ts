@@ -1,5 +1,5 @@
 import '@/styles/common.scss'
-
+import 'element-plus/theme-chalk/el-message.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { lazyPlugin } from './directives'
