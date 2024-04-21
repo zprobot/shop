@@ -85,7 +85,7 @@ export type CartItem = {
     count: number
     skuId: string
     attrsText: string
-    selected: boolean
+    selected?: boolean
     specs?: string[],
     nowPrice?: string
     nowOriginalPrice?: string
@@ -94,7 +94,23 @@ export type CartItem = {
     discount?: null
     isCollect?: boolean
     postFee?: number
+    payPrice?: string
+    totalPrice?: string
+    totalPayPrice?: string
 }
+export type CartInfo = {
+    goodsCount: number
+    totalPrice: number
+    totalPayPrice: number
+    postFee: number
+    discountPrice: number
+}
+export type PayOrder = {
+    userAddresses: UserAddress[]
+    goods: CartItem[]
+    summary: CartInfo
+} 
+
 export type GoodCategory = {
     id: string
     name: string
@@ -190,6 +206,80 @@ export type Account = {
     provinceCode: string
     token: string
 }
+
+export type UserAddress = {
+    id: string
+    receiver: string
+    contact: string
+    provinceCode: string
+    cityCode: string
+    countyCode: string
+    address: string
+    isDefault: number
+    fullLocation: string
+    postalCode: string | null
+    addressTags: string | null
+}
+export type Order = {
+    id: string
+    createTime: string
+    payType: number
+    orderState: number
+    payLatestTime: string
+    postFee: number
+    payMoney: number
+    totalMoney: number
+    totalNum: number
+    skus: null | {
+        id: string
+        spuId: string
+        name: string
+        quantity: string
+        image: string
+        realPay: number
+        curPrice: number
+        totalMoney: null | number
+        properties: {
+            propertyMainName: string
+            propertyValueName: string
+        }[]
+        attrsText: string
+    }[]
+    payChannel: number
+    countdown: number | null
+}
+export interface OrderDetail extends Order {
+    payState: number
+    deliveryTimeType: number
+    receiverContact: string
+    receiverMobile: string
+    provinceCode: string
+    cityCode: string
+    countyCode: string
+    receiverAddress: string
+    payTime: null
+    consignTime: null
+    endTime: null
+    closeTime: string
+    evaluationTime: null
+    skus: {
+        id: string
+        spuId: string
+        name: string
+        quantity: string
+        image: string
+        realPay: number
+        curPrice: number
+        totalMoney: null | number
+        properties: {
+            propertyMainName: string
+            propertyValueName: string
+        }[]
+        attrsText: string
+    }[]
+    arrivalEstimatedTime: null
+}
+
 export interface GoodCategoryResponse extends ResponseBase {
     result: GoodCategory[]
 }
@@ -228,4 +318,13 @@ export interface CartListResponse extends ResponseBase {
 }
 export interface AddCartResponse extends ResponseBase {
     result: CartItem
+}
+export interface PayOrderResponse extends ResponseBase {
+    result: PayOrder
+}
+export interface OrderResponse extends ResponseBase {
+    result: Order
+}
+export interface OrderDetailResponse extends ResponseBase {
+    result: OrderDetail
 }
