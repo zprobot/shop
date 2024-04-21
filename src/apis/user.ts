@@ -1,5 +1,5 @@
 import http from "@/utils/http"
-import type { LoginResponse } from "./type"
+import type { LikeGoodResponse, LoginResponse } from "./type"
 
 export type User = {
     account: string
@@ -7,4 +7,7 @@ export type User = {
 }
 export function reqLogin(user:User) {
     return http.post<any,LoginResponse>('/login',user)
+}
+export const reqLikeList = (limit = 4) => {
+    return http.get<any,LikeGoodResponse>('/goods/relevant',{params:{limit}});
 }

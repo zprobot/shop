@@ -279,6 +279,13 @@ export interface OrderDetail extends Order {
     }[]
     arrivalEstimatedTime: null
 }
+export type AllOrder = {
+    counts: number
+    items: Order[]
+    page: number
+    pageSize: number
+    pages: number
+}
 
 export interface GoodCategoryResponse extends ResponseBase {
     result: GoodCategory[]
@@ -327,4 +334,10 @@ export interface OrderResponse extends ResponseBase {
 }
 export interface OrderDetailResponse extends ResponseBase {
     result: OrderDetail
+}
+export interface LikeGoodResponse extends ResponseBase {
+    result: Good[]
+} 
+export interface AllOrderResponse extends ResponseBase {
+    result: AllOrder
 }
